@@ -1,0 +1,19 @@
+header {
+    background-image: linear-gradient(to right, #0D6EFD, rgb(41, 41, 99));
+}
+
+.input-group {
+    display: block;
+}
+
+.form-control {
+    width: 100% !important;
+}
+
+.form-input {
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+}
