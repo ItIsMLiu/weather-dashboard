@@ -28,6 +28,7 @@ $(document).ready(function(){
         todayList.append(currentCity, currentWeather, currentTempC, currentWindSpeed, currentHumidity);
         currentWeather.append(iconImg);
     }
+
     // Function to get next 5 days' weather
     function forecastWeather(data) {
         let fiveDay = $("<h5>").text("5-Day Forecast:");
@@ -53,6 +54,7 @@ $(document).ready(function(){
             forecastList.append(forecastDate, forecastIconLi, forecastTempC, forecastWindSpeed, forecastHumidity);
         }
     }
+
     // Function to render buttons
     function renderBtns() {
         let historyDiv = $("#history");
@@ -65,6 +67,7 @@ $(document).ready(function(){
             historyDiv.prepend(historyBtn); 
         }
     }
+
     // Function to fetch and display weather info
     function displayWeatherInfo() {
         // Building the URL we need to query the database
@@ -82,6 +85,21 @@ $(document).ready(function(){
             renderBtns();
         });
     }
+
+    function storeHistory() {
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    }
+
+    function init() {
+        let storeHistory = JSON.parse(localStorage.getItem('searchHistory'));
+        if (storeHistory !== null) {
+            searchHistory = storeHistory;
+            displayWeatherInfo();
+        }
+    }
+
+    init();
+
     // Search Button when clicked ...
     searchBtn.on('click', function(event){
         event.preventDefault();
@@ -94,11 +112,12 @@ $(document).ready(function(){
         cityName = $('#search-input').val().trim();
         if (cityName !== '') {
             searchHistory.push(cityName);
+            storeHistory();
             displayWeatherInfo();
         }
-
     }); 
 
+    // When saved city buttons is clicked ...
     $(document).on("click", ".citiesBtn", function(event) {
         let element = event.target;
         cityName = element.getAttribute("data-name");
