@@ -75,15 +75,15 @@ $(document).ready(function(){
         console.log(queryURL)
 
         fetch(queryURL)
-        .then(function(response) {
-            return response.json();
-        }).then(function(data){
-            console.log(data);
+            .then(function(response) {
+                return response.json();
+            }).then(function(data){
+                console.log(data);
 
-            todayWeather(data);
-            forecastWeather(data);
-            renderBtns();
-        });
+                todayWeather(data);
+                forecastWeather(data);
+                renderBtns();
+            });
     }
 
     function storeHistory() {
@@ -94,7 +94,7 @@ $(document).ready(function(){
         let storeHistory = JSON.parse(localStorage.getItem('searchHistory'));
         if (storeHistory !== null) {
             searchHistory = storeHistory;
-            displayWeatherInfo();
+            displayWeatherInfo(cityName = searchHistory[searchHistory.length-1]);
         }
     }
 
