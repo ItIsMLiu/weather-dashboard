@@ -3,7 +3,6 @@ $(document).ready(function(){
     var apiURL = "https://api.openweathermap.org/data/2.5/forecast?";
     var apiKey = "263bf77c1423fb8b65af30d1f784cb89";
     var cityName = "";
-    var forecastdays = 5;
 
     var searchBtn = $('#search-button');
 
@@ -45,8 +44,10 @@ $(document).ready(function(){
             $("#forecast").append(fiveDay);
 
             for (let i = 7; i < 41; i += 8) {
-                let forecastList = $("<ul>");
                 
+                let forecastList = $("<ul>");
+                forecastList.addClass('col');
+
                 let forecastDate = $("<li>").text(data.list[i].dt_txt);
                 
                 let forecastIconCode = data.list[i].weather[0].icon;
@@ -60,9 +61,6 @@ $(document).ready(function(){
                 var forecastHumidity = $("<li>").text("Humidity: " + data.list[i].main.humidity + "%");
                 $("#forecast").append(forecastList);
                 forecastList.append(forecastDate, forecastWeather, forecastTempC, forecastWindSpeed, forecastHumidity);
-                
-                forecastdays--;
-                
             }
         });
     }); 

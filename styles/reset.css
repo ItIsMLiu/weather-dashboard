@@ -40,3 +40,9 @@ li {
 li img {
     width: 50px;
 }
+
+.col {
+    margin: 10px;
+    background-color: rgb(41, 41, 99);
+    color: white;
+}
