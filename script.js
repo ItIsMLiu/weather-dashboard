@@ -59,7 +59,7 @@ $(document).ready(function(){
         historyDiv.empty();
         for (let i = 0; i < searchHistory.length; i++) {
             let historyBtn = $("<button>");
-            historyBtn.addClass("btn btn-secondary");
+            historyBtn.addClass("btn btn-secondary citiesBtn");
             historyBtn.attr("data-name", searchHistory[i]);
             historyBtn.text(searchHistory[i]);
             historyDiv.prepend(historyBtn); 
@@ -92,10 +92,23 @@ $(document).ready(function(){
         
         // Get the value of #search-input
         cityName = $('#search-input').val().trim();
-        searchHistory.push(cityName);
+        if (cityName !== '') {
+            searchHistory.push(cityName);
+            displayWeatherInfo();
+        }
+
+    }); 
+
+    $(document).on("click", ".citiesBtn", function(event) {
+        let element = event.target;
+        cityName = element.getAttribute("data-name");
+        
+        // Clear previous search result
+        $("#today").empty();
+        $("#forecast").empty();
 
         displayWeatherInfo()
-    }); 
+    });
 }); 
 
 
