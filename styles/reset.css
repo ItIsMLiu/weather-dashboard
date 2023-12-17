@@ -17,3 +17,26 @@ header {
 button {
     width: 100%;
 }
+
+
+ul {
+    list-style-type: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 0px;
+    margin-left: 0px;
+    padding: 10px;
+}
+
+li {
+    line-height: 200%;
+} 
+
+.current-city {
+    font-size:x-large;
+    font-weight: bold;
+}
+
+li img {
+    width: 50px;
+}
