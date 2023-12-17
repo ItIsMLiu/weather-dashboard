@@ -20,6 +20,7 @@ $(document).ready(function(){
         // Building the URL we need to query the database
         // Get the value of #search-input
         cityName = $('#search-input').val().trim();
+        searchHistory.push(cityName);
         queryURL = apiURL + "q=" + cityName + "&appid=" + apiKey;
         console.log(queryURL)
 
@@ -67,6 +68,18 @@ $(document).ready(function(){
                 forecastList.append(forecastDate, forecastIconLi, forecastTempC, forecastWindSpeed, forecastHumidity);
             }
         }
+        // Function to render buttons
+        function renderBtns() {
+            let historyDiv = $("#history");
+            historyDiv.empty();
+            for (let i = 0; i < searchHistory.length; i++) {
+                let historyBtn = $("<button>");
+                historyBtn.addClass("btn btn-secondary");
+                historyBtn.attr("data-name", searchHistory[i]);
+                historyBtn.text(searchHistory[i]);
+                historyDiv.prepend(historyBtn); 
+            }
+        }
 
         // Fetch third party data
         fetch(queryURL)
@@ -77,6 +90,7 @@ $(document).ready(function(){
 
             todayWeather(data);
             forecastWeather(data);
+            renderBtns();
         });
     }); 
 }); 

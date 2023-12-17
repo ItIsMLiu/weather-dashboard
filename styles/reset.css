@@ -46,3 +46,7 @@ li img {
     background-color: rgb(41, 41, 99);
     color: white;
 }
+
+#history button {
+    margin-bottom: 10px;
+}
